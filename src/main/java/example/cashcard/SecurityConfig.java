@@ -29,11 +29,11 @@ import static org.springframework.security.config.Customizer.withDefaults;
     SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http.
                 authorizeHttpRequests((authz) ->
-                        authz
-                                .requestMatchers(new AntPathRequestMatcher("/cashcards/**")).hasRole("CARD-OWNER")
-                                .requestMatchers(new AntPathRequestMatcher("/h2-console/**")).permitAll()
-                )
-                .csrf().disable()
+                authz
+                        .requestMatchers(new AntPathRequestMatcher("/cashcards/**")).hasRole("CARD-OWNER")
+                        .requestMatchers(new AntPathRequestMatcher("/h2-console/**")).permitAll()
+        )
+        .csrf(csrf -> csrf.disable())
                 .httpBasic(withDefaults());
         return http.build();
     }
