@@ -17,7 +17,7 @@
 	<description>Upgrade a Spring Boot 2.5.x project to 2.7</description>
 
 	<properties>
-		<java.version>17</java.version>
+		<java.version>21</java.version>
 
 		<!-- add itextpdf version here -->
 <!--		<itextpdf.version>5.5.13.3</itextpdf.version>-->
