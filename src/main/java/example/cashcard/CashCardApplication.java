@@ -4,6 +4,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.ConfigurableBootstrapContext;
 //import org.springframework.boot.DefaultBootstrapContext;
+import org.springframework.boot.DefaultBootstrapContext;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.context.event.ApplicationStartingEvent;
@@ -19,8 +20,7 @@ public class CashCardApplication {
 		springApplication.addListeners(myApplicationListener);
 
 		//  Eliminate compile errors
-		myApplicationListener.onApplicationEvent(new MyApplicationStartingEvent(springApplication, args));
-//		myApplicationListener.onApplicationEvent(new MyApplicationStartingEvent(new DefaultBootstrapContext(), springApplication, args));
+		myApplicationListener.onApplicationEvent(new MyApplicationStartingEvent(new DefaultBootstrapContext(), springApplication, args));
 
 		springApplication.run(args);
 
@@ -43,21 +43,6 @@ class MyApplicationStartingEvent extends ApplicationStartingEvent {
 
 	private static final Logger log = LoggerFactory.getLogger(MyApplicationStartingEvent.class);
 
-	/**
-	 * This was deprecated in Spring Boot 2.4, removed in 2.6.
-	 *
-	 * @param application
-	 * @param args
-	 */
-	@Deprecated
-	public MyApplicationStartingEvent(SpringApplication application, String[] args) {
-
-		// This signature has been removed in Boot 2.6
-		super(application, args);
-
-		log.warn("My parent is deprecated!");
-
-	}
 
 	public MyApplicationStartingEvent(ConfigurableBootstrapContext bootstrapContext, SpringApplication application, String[] args) {
 		super(bootstrapContext, application, args);
