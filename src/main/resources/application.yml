@@ -16,6 +16,9 @@ spring:
     defer-datasource-initialization: true
 
   web.locale: en_US
+  threads:
+    virtual:
+      enabled: true
 
 #    hibernate:
 #      ddl-auto: none
